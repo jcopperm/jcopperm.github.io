@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holiday Puzzle Adventure</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .puzzle {
+            display: none;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+        .visible {
+            display: block;
+        }
+        .input-group {
+            margin: 15px 0;
+        }
+        .input-group input {
+            padding: 10px;
+            width: 80%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .input-group button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .input-group button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Holiday Puzzle Adventure</h1>
+    <p>Welcome to your holiday puzzle adventure! Solve the puzzles to reveal the code names and advance to the next challenge. Work together and have fun!</p>
+
+    <!-- Puzzle 1 -->
+    <div id="puzzle1" class="puzzle visible">
+        <h2>Puzzle 1: Whitney</h2>
+        <p><strong>Photography Challenge:</strong> Spot the 19 differences in the two images below!</p>
+        <div>
+            <img src="image1.jpg" alt="Image 1">
+            <img src="image2.jpg" alt="Image 2">
+        </div>
+        <div class="input-group">
+            <input type="text" id="answer1" placeholder="Number of differences">
+            <button onclick="checkSpotTheDifference()">Submit</button>
+        </div>
+    </div>
+
+    <div id="solution" class="puzzle">
+        <h2>Solutions Revealed!</h2>
+        <p>Here are the solutions to the differences:</p>
+        <div class="solution-images">
+            <img src="image1_solution.jpg" alt="Solution Image 1">
+            <img src="image2_solution.jpg" alt="Solution Image 2">
+        </div>
+        <button onclick="moveToNextPuzzle(2)">Proceed to Next Puzzle</button>
+    </div>
+
+    <div id="fail" class="puzzle">
+        <h2>Too Many Attempts!</h2>
+        <p>Oh no! You’ve used all your attempts. Reload the page to try again!</p>
+        <button onclick="reloadPage()">Reload</button>
+    </div>
+
+    <!-- Puzzle 2 -->
+    <div id="puzzle2" class="puzzle">
+        <h2>Puzzle 2</h2>
+        <p><strong>Italian Menu Challenge:</strong> Match each diner to their dish and wine. Enter the total amount (in euros) each diner pays for their meal.</p>
+
+        <h3>Menu</h3>
+        <div>
+            <h4>Entrees</h4>
+            <ul>
+                <li>Branzino al Forno: €28</li>
+                <li>Bistecca alla Fiorentina: €40</li>
+                <li>Cinghiale alla Cacciatora: €34</li>
+                <li>Risotto ai Funghi Porcini: €20</li>
+            </ul>
+            <h4>Wines</h4>
+            <ul>
+                <li>Vermentino di Sardegna: €22</li>
+                <li>Chianti Classico Riserva: €35</li>
+                <li>Barolo: €50</li>
+                <li>Soave Classico: €18</li>
+            </ul>
+        </div>
+
+        <div class="input-group">
+            <label for="maddoxAnswer">Maddox:</label>
+            <input type="text" id="maddoxAnswer" placeholder="Amount in €">
+        </div>
+        <div class="input-group">
+            <label for="terryAnswer">Terry:</label>
+            <input type="text" id="terryAnswer" placeholder="Amount in €">
+        </div>
+        <div class="input-group">
+            <label for="mashalAnswer">Mashal:</label>
+            <input type="text" id="mashalAnswer" placeholder="Amount in €">
+        </div>
+        <div class="input-group">
+            <label for="cruiseAnswer">Cruise:</label>
+            <input type="text" id="cruiseAnswer" placeholder="Amount in €">
+        </div>
+        <button onclick="checkMenuAnswers()">Submit</button>
+    </div>
+
+    <!-- Puzzle 3 -->
+    <div id="puzzle3" class="puzzle">
+        <h2>Puzzle 3</h2>
+        <p><strong>Music Matching Challenge:</strong> Review the notations below, listen to the themes played on the piano, and match them to their correct songs. Input the last name of the composer, name of the band, or first word of the name of the song-- whichever would be the most common.</p>
+
+        <h3>Music Notations</h3>
+        <div>
+            <ul>
+                <li>Theme 1: G G G E♭ | F F F D | G G G E♭ | F F F D</li>
+                <li>Theme 2: G G D G | B F♯ G A | F♯ G A G</li>
+                <li>Theme 3: E E F♯ G♯ | A G♯ F♯ E | D E F♯ E | G♯ A F♯ E</li>
+                <li>Theme 4: E G♯ B | C♯ B A | A F♯ E | F♯ G♯ E</li>
+                <li>Theme 5: A A G♯ G♯ F♯ | F♯ E D | D E F♯ G♯ | A G♯ F♯ E</li>
+                <li>Theme 6: C C G G | A A G | F F E E | D D C</li>
+            </ul>
+        </div>
+
+        <div class="input-group">
+            <label for="theme1Answer">Theme 1:</label>
+            <input type="text" id="theme1Answer" placeholder="Your answer (e.g., Beethoven)">
+        </div>
+        <div class="input-group">
+            <label for="theme2Answer">Theme 2:</label>
+            <input type="text" id="theme2Answer" placeholder="Your answer">
+        </div>
+        <div class="input-group">
+            <label for="theme3Answer">Theme 3:</label>
+            <input type="text" id="theme3Answer" placeholder="Your answer">
+        </div>
+        <div class="input-group">
+            <label for="theme4Answer">Theme 4:</label>
+            <input type="text" id="theme4Answer" placeholder="Your answer">
+        </div>
+        <div class="input-group">
+            <label for="theme5Answer">Theme 5:</label>
+            <input type="text" id="theme5Answer" placeholder="Your answer">
+        </div>
+        <div class="input-group">
+            <label for="theme6Answer">Theme 6:</label>
+            <input type="text" id="theme6Answer" placeholder="Your answer">
+        </div>
+        <button onclick="checkMusicAnswers()">Submit</button>
+    </div>
+
+    <div id="musicSolution" class="puzzle" style="display: none;">
+        <h2>Music Match Success!</h2>
+        <p>Correct! Here are the matches:</p>
+        <ul>
+            <li>Theme 1: Beethoven - Symphony No. 5</li>
+            <li>Theme 2: Mozart - Eine kleine Nachtmusik</li>
+            <li>Theme 3: Vivaldi - The Four Seasons</li>
+            <li>Theme 4: Adele - Hello</li>
+            <li>Theme 5: Queen - Bohemian Rhapsody</li>
+            <li>Theme 6: Twinkle Twinkle Little Star</li>
+        </ul>
+        <button onclick="moveToNextPuzzle(4)">Proceed to Next Puzzle</button>
+    </div>
+
+    <div id="fail" class="puzzle">
+        <h2>Whups!</h2>
+        <p>Oh no! I guess no Christmas this year! Reload the page to try again.</p>
+        <button onclick="reloadPage()">Reload</button>
+    </div>
+
+    <script>
+        let attempts = 3;
+
+        function checkMusicAnswers() {
+            const answers = {
+                theme1: "beethoven",
+                theme2: "mozart",
+                theme3: "vivaldi",
+                theme4: "adele",
+                theme5: "queen",
+                theme6: "twinkle"
+            };
+
+            const theme1Answer = document.getElementById('theme1Answer').value.trim().toLowerCase();
+            const theme2Answer = document.getElementById('theme2Answer').value.trim().toLowerCase();
+            const theme3Answer = document.getElementById('theme3Answer').value.trim().toLowerCase();
+            const theme4Answer = document.getElementById('theme4Answer').value.trim().toLowerCase();
+            const theme5Answer = document.getElementById('theme5Answer').value.trim().toLowerCase();
+            const theme6Answer = document.getElementById('theme6Answer').value.trim().toLowerCase();
+
+            if (
+                theme1Answer === answers.theme1 &&
+                theme2Answer === answers.theme2 &&
+                theme3Answer === answers.theme3 &&
+                theme4Answer === answers.theme4 &&
+                theme5Answer === answers.theme5 &&
+                theme6Answer === answers.theme6
+            ) {
+                document.getElementById('puzzle3').classList.remove('visible');
+                document.getElementById('musicSolution').style.display = 'block';
+            } else {
+                attempts--;
+                if (attempts > 0) {
+                    alert(`Incorrect. You have ${attempts} attempt(s) left.`);
+                } else {
+                    document.getElementById('puzzle3').classList.remove('visible');
+                    document.getElementById('fail').classList.add('visible');
+                }
+            }
+        }
+
+        function reloadPage() {
+            location.reload();
+        }
+
+        function checkSpotTheDifference() {
+            const userAnswer = document.getElementById('answer1').value.trim();
+            if (userAnswer === '19') {
+                document.getElementById('puzzle1').classList.remove('visible');
+                document.getElementById('solution').classList.add('visible');
+            } else {
+                alert('Incorrect. Try again!');
+            }
+        }
+
+        function checkMenuAnswers() {
+            const maddoxCorrect = 75;
+            const terryCorrect = 50;
+            const mashalCorrect = 38;
+            const cruiseCorrect = 84;
+
+            const maddoxAnswer = parseFloat(document.getElementById('maddoxAnswer').value);
+            const terryAnswer = parseFloat(document.getElementById('terryAnswer').value);
+            const mashalAnswer = parseFloat(document.getElementById('mashalAnswer').value);
+            const cruiseAnswer = parseFloat(document.getElementById('cruiseAnswer').value);
+
+            if (
+                Math.abs(maddoxAnswer - maddoxCorrect) <= 1 &&
+                Math.abs(terryAnswer - terryCorrect) <= 1 &&
+                Math.abs(mashalAnswer - mashalCorrect) <= 1 &&
+                Math.abs(cruiseAnswer - cruiseCorrect) <= 1
+            ) {
+                moveToNextPuzzle(3);
+            } else {
+                attempts--;
+                if (attempts > 0) {
+                    alert(`Incorrect. You have ${attempts} attempt(s) left.`);
+                } else {
+                    alert('Too many incorrect attempts. I guess no Christmas this year!');
+                    document.getElementById('puzzle2').classList.remove('visible');
+                }
+            }
+        }
+
+        function moveToNextPuzzle(nextPuzzleId) {
+            // Hide all puzzles
+            document.querySelectorAll('.puzzle').forEach(puzzle => puzzle.classList.remove('visible'));
+
+            // Show the next puzzle
+            const nextPuzzle = document.getElementById(`puzzle${nextPuzzleId}`);
+            if (nextPuzzle) {
+                nextPuzzle.classList.add('visible');
+            } else {
+                console.error(`Puzzle with ID puzzle${nextPuzzleId} not found.`);
+            }
+        }
+
+    </script>
+
+
+</body>
+</html>
