@@ -176,13 +176,67 @@
             <li>Theme 5: Queen - Bohemian Rhapsody</li>
             <li>Theme 6: Twinkle Twinkle Little Star</li>
         </ul>
-        <button onclick="moveToNextPuzzle(4)">Proceed to Next Puzzle</button>
     </div>
 
     <div id="fail" class="puzzle">
         <h2>Whups!</h2>
         <p>Oh no! I guess no Christmas this year! Reload the page to try again.</p>
         <button onclick="reloadPage()">Reload</button>
+    </div>
+
+    <!-- Trivia Puzzle 1 -->
+    <div id="trivia1" class="puzzle">
+        <h2>Trivia Question 1</h2>
+        <p>Which Italian city is home to the football club Juventus?</p>
+        <div class="input-group">
+            <input type="text" id="q1" placeholder="Your answer">
+            <button onclick="checkTriviaAnswer(1, 'turin', 'Whitney: Lasagna')">Submit</button>
+        </div>
+        <p id="codeName1" class="code-name" style="display: none;">Correct! Code Name: Whitney: Lasagna</p>
+    </div>
+
+    <!-- Trivia Puzzle 2 -->
+    <div id="trivia2" class="puzzle">
+        <h2>Trivia Question 2</h2>
+        <p>Which Italian footballer is known as "The Divine Ponytail"?</p>
+        <div class="input-group">
+            <input type="text" id="q2" placeholder="Your answer">
+            <button onclick="checkTriviaAnswer(2, 'roberto baggio', 'Jeffrey: Bruschetta')">Submit</button>
+        </div>
+        <p id="codeName2" class="code-name" style="display: none;">Correct! Code Name: Jeffrey: Bruschetta</p>
+    </div>
+
+    <!-- Trivia Puzzle 3 -->
+    <div id="trivia3" class="puzzle">
+        <h2>Trivia Question 3</h2>
+        <p>What is the name of the Italian national football team?</p>
+        <div class="input-group">
+            <input type="text" id="q3" placeholder="Your answer">
+            <button onclick="checkTriviaAnswer(3, 'azzurri', 'Rylan: Pizza')">Submit</button>
+        </div>
+        <p id="codeName3" class="code-name" style="display: none;">Correct! Code Name: Rylan: Pizza</p>
+    </div>
+
+    <!-- Trivia Puzzle 4 -->
+    <div id="trivia4" class="puzzle">
+        <h2>Trivia Question 4</h2>
+        <p>Which Italian city is known for its Leaning Tower?</p>
+        <div class="input-group">
+            <input type="text" id="q4" placeholder="Your answer">
+            <button onclick="checkTriviaAnswer(4, 'pisa', 'Maddox: Cacio e Pepe')">Submit</button>
+        </div>
+        <p id="codeName4" class="code-name" style="display: none;">Correct! Code Name: Maddox: Cacio e Pepe</p>
+    </div>
+
+    <!-- Trivia Puzzle 5 -->
+    <div id="trivia5" class="puzzle">
+        <h2>Trivia Question 5</h2>
+        <p>Which Italian football club is based in Milan and wears red and black stripes?</p>
+        <div class="input-group">
+            <input type="text" id="q5" placeholder="Your answer">
+            <button onclick="checkTriviaAnswer(5, 'ac milan', 'Cruise: Carbonara')">Submit</button>
+        </div>
+        <p id="codeName5" class="code-name" style="display: none;">Correct! Code Name: Cruise: Carbonara</p>
     </div>
 
     <script>
@@ -215,6 +269,7 @@
             ) {
                 document.getElementById('puzzle3').classList.remove('visible');
                 document.getElementById('musicSolution').style.display = 'block';
+                document.getElementById('trivia1').classList.add('visible');
             } else {
                 attempts--;
                 if (attempts > 0) {
@@ -281,6 +336,40 @@
                 console.error(`Puzzle with ID puzzle${nextPuzzleId} not found.`);
             }
         }
+
+        function checkTriviaAnswer(questionNumber, correctAnswer, codeName) {
+            const userAnswer = document.getElementById(`q${questionNumber}`).value.trim().toLowerCase();
+            const codeNameElement = document.getElementById(`codeName${questionNumber}`);
+
+            if (userAnswer === correctAnswer) {
+                // Display the codename
+                codeNameElement.style.display = 'block';
+
+                // Add a button to proceed to the next question
+                const currentTrivia = document.getElementById(`trivia${questionNumber}`);
+                if (!document.getElementById(`nextButton${questionNumber}`)) {
+                    const nextButton = document.createElement('button');
+                    nextButton.id = `nextButton${questionNumber}`;
+                    nextButton.textContent = 'Next Question';
+                    nextButton.onclick = () => {
+                        currentTrivia.classList.remove('visible');
+                        const nextTrivia = document.getElementById(`trivia${questionNumber + 1}`);
+                        if (nextTrivia) {
+                            nextTrivia.classList.add('visible');
+                        } else {
+                            alert('Congratulations! You have revealed all the code names!');
+                        }
+                    };
+                    currentTrivia.appendChild(nextButton);
+                }
+            } else {
+                alert('Incorrect. Try again!');
+            }
+        }
+
+
+    </script>
+
 
     </script>
 
